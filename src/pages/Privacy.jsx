@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
+// This must be a fixed date, not a computed one. A Privacy Policy whose
+// "Effective Date" always shows today's date to every visitor (including a
+// Play Store or App Store reviewer) reads as an unversioned, auto-generated
+// document rather than a real legal policy. Update this string by hand each
+// time the policy text actually changes, and keep a changelog of prior
+// versions somewhere internally (not required to be public, but useful if
+// a regulator or platform ever asks what changed and when).
+const EFFECTIVE_DATE = 'August 18, 2026';
 
 export default function Privacy() {
   const [activeSection, setActiveSection] = useState('intro');
-  const [currentDate, setCurrentDate] = useState('');
-
-  // Set today's date dynamically on component mount
-  useEffect(() => {
-    const today = new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }).format(new Date());
-    setCurrentDate(today);
-  }, []);
 
   // Highlight the active section in the sidebar as the user scrolls
   useEffect(() => {
@@ -60,7 +59,7 @@ export default function Privacy() {
             Comprehensive Privacy Policy
           </h1>
           <p className="text-xl text-slate-500 font-medium">
-            Effective Date: <span className="text-blue-700 font-bold">{currentDate}</span>
+            Effective Date: <span className="text-blue-700 font-bold">{EFFECTIVE_DATE}</span>
           </p>
         </div>
       </div>
@@ -141,7 +140,18 @@ export default function Privacy() {
                     <li><strong className="text-slate-900">Clinical Records:</strong> Past medical history, surgical history, family medical history, known allergies, chronic conditions, and blood group.</li>
                     <li><strong className="text-slate-900">Consultation Data:</strong> Audio/video recordings of teleconsultations (subject to explicit in-app consent), physician observation notes, digital prescriptions, and recommended treatment plans.</li>
                     <li><strong className="text-slate-900">Diagnostic Data:</strong> Laboratory test results, pathology reports, radiology images, and biometric readings.</li>
-                    <li><strong className="text-slate-900">Device-Synced Health Data:</strong> With your explicit, revocable permission, we may read/write data to Apple HealthKit or Google Fit strictly to enhance your clinical assessment.</li>
+                    {/*
+                      ⚠️ CONFIRM BEFORE PUBLISHING: this bullet (and the
+                      matching "HealthKit & Google Fit" card in Section 3
+                      below) only belongs here if the app genuinely reads or
+                      writes Apple HealthKit / Google Fit data today. I could
+                      not find a HealthKit or Google Fit / Health Connect
+                      integration in the app's dependencies. Google and Apple
+                      both check that a Privacy Policy's claims match what the
+                      app actually does, so if this integration isn't live
+                      yet, delete this bullet and the Section 3 card until it
+                      is, rather than describing a feature that doesn't exist.
+                    */}
                   </ul>
                 </div>
 
@@ -166,16 +176,26 @@ export default function Privacy() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm">
                   <h4 className="text-xl font-bold text-slate-900 mb-4">Core Medical Service Delivery</h4>
-                  <p className="text-lg text-slate-600 leading-relaxed">To schedule appointments, facilitate secure HD video teleconsultations, route your medical history, and generate electronic prescriptions.</p>
+                  {/*
+                    ⚠️ CONFIRM: "HD video teleconsultations" is a specific,
+                    checkable claim. I could not find a video-calling SDK
+                    (e.g. Agora, WebRTC, Zego) in the Flutter app's
+                    dependencies, so I can't confirm this is live in the app
+                    today. If video consults aren't shipped yet, soften this
+                    to match reality (e.g. "voice and chat consultations,
+                    with video consultations planned") until they are, so the
+                    Privacy Policy never promises more than the app delivers.
+                  */}
+                  <p className="text-lg text-slate-600 leading-relaxed">To schedule appointments, facilitate secure teleconsultations, route your medical history, and generate electronic prescriptions.</p>
                 </div>
                 <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm">
                   <h4 className="text-xl font-bold text-slate-900 mb-4">Legal & Regulatory Compliance</h4>
                   <p className="text-lg text-slate-600 leading-relaxed">To fulfill obligations under national health directives, respond to valid subpoenas, and maintain auditable medical records.</p>
                 </div>
-                <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm">
-                  <h4 className="text-xl font-bold text-slate-900 mb-4">HealthKit & Google Fit</h4>
-                  <p className="text-lg text-slate-600 leading-relaxed">We use this data solely to display a unified health dashboard for your physician. We strictly prohibit its use for marketing.</p>
-                </div>
+                {/*
+                  ⚠️ Same flag as Section 2: only re-add this card once the
+                  HealthKit / Google Fit integration is actually shipped.
+                */}
                 <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm">
                   <h4 className="text-xl font-bold text-slate-900 mb-4">Operational Communications</h4>
                   <p className="text-lg text-slate-600 leading-relaxed">To send transactional SMS, push notifications, and emails regarding appointment confirmations and prescription refills.</p>
@@ -205,7 +225,12 @@ export default function Privacy() {
               
               <div className="bg-blue-50 border-l-8 border-blue-600 p-8 md:p-10 rounded-r-3xl space-y-6 shadow-sm">
                 <p className="text-lg md:text-xl text-blue-900 leading-relaxed">
-                  <strong>In-App Deletion Protocol:</strong> You can request complete account deletion directly within the mobile app by navigating to <span className="bg-white px-3 py-1.5 rounded-lg shadow-sm font-mono text-base border border-blue-200 mx-2">Settings &gt; Privacy &gt; Delete My Account</span>.
+                  <strong>In-App Deletion:</strong> You can request complete account deletion directly within the mobile app by navigating to <span className="bg-white px-3 py-1.5 rounded-lg shadow-sm font-mono text-base border border-blue-200 mx-2">Settings &gt; Delete Account</span>.
+                </p>
+                <p className="text-lg md:text-xl text-blue-900 leading-relaxed">
+                  <strong>Web-Based Deletion:</strong> If you no longer have the app installed, you can request the same deletion from a browser at{' '}
+                  <Link to="/delete-account" className="underline font-bold hover:text-blue-700">soudaminihealthcare.com/delete-account</Link>{' '}
+                  without needing to reinstall the app.
                 </p>
                 <p className="text-lg md:text-xl text-blue-900 leading-relaxed">
                   <strong>Execution Timeline:</strong> Upon initiating deletion, your account access will be revoked immediately. Non-medical PII, device identifiers, and marketing profiles will be permanently erased within 30 days.
@@ -261,6 +286,16 @@ export default function Privacy() {
                 <h4 className="text-2xl font-bold mb-8 text-blue-400">Office of the Data Protection Officer</h4>
                 <div className="space-y-6 text-lg md:text-xl text-slate-300">
                   <p><strong className="text-white">Entity:</strong> Soudamini Healthcare Private Limited</p>
+                  {/*
+                    ⚠️ FILL IN BEFORE PUBLISHING: a registered postal address
+                    (and, if incorporated, CIN/registration number) is
+                    expected here. India's DPDP Act requires a Data
+                    Fiduciary's grievance contact to include a physical
+                    address, not just email/phone, and a health app with no
+                    verifiable address anywhere on its site reads as a red
+                    flag to reviewers. Replace the placeholder below.
+                  */}
+                  <p><strong className="text-white">Registered Office:</strong> [Add your registered business address here]</p>
                   <p><strong className="text-white">Email:</strong> legal@soudaminihealthcare.com</p>
                   <p><strong className="text-white">Escalations:</strong> dpo@soudaminihealthcare.com</p>
                   <p><strong className="text-white">Phone:</strong> +91 (800) 123-4567 (Mon-Fri, 9:00 AM - 6:00 PM IST)</p>

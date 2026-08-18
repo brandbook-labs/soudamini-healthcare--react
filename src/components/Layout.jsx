@@ -1,3 +1,4 @@
+// src/components/Layout.jsx
 import { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
@@ -109,6 +110,7 @@ export default function Layout() {
           <div className="flex gap-6 text-sm font-medium text-slate-400">
             <Link to="/privacy" className="hover:text-slate-900 transition-colors">Privacy</Link>
             <Link to="/terms" className="hover:text-slate-900 transition-colors">Terms</Link>
+            <Link to="/delete-account" className="hover:text-slate-900 transition-colors">Delete Account</Link>
             <Link to="/contact" className="hover:text-slate-900 transition-colors">Support</Link>
           </div>
 

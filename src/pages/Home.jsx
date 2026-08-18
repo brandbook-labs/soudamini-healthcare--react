@@ -127,7 +127,7 @@ export default function Home() {
               <span className="text-blue-600 font-bold tracking-wider uppercase text-sm mb-2 block">Our Facilities</span>
               <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">World-Class Departments</h2>
             </div>
-            <Link to="/services" className="hidden md:inline-flex items-center gap-2 text-slate-600 font-semibold hover:text-blue-600 transition-colors">
+            <Link to="/features" className="hidden md:inline-flex items-center gap-2 text-slate-600 font-semibold hover:text-blue-600 transition-colors">
               View all services <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
           </div>
@@ -177,7 +177,7 @@ export default function Home() {
               <div className="relative z-10 flex flex-col justify-between h-full">
                 <h3 className="text-2xl font-bold mb-2">Advanced Pathology Lab</h3>
                 <p className="text-blue-100 font-medium max-w-sm">In-house, high-precision diagnostics ensuring your doctors have accurate data in minutes, not days.</p>
-                <Link to="/services" className="inline-flex items-center gap-2 text-white font-bold mt-4 hover:gap-3 transition-all">
+                <Link to="/features" className="inline-flex items-center gap-2 text-white font-bold mt-4 hover:gap-3 transition-all">
                   Learn more <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                 </Link>
               </div>
