@@ -22,12 +22,13 @@ export default function Layout() {
           
           {/* Quiet Logo */}
           <Link to="/" className="flex items-center gap-2 focus:outline-none">
-            <div className="w-5 h-5 bg-slate-900 rounded-sm flex items-center justify-center">
-              <span className="text-white font-medium text-xs leading-none">+</span>
+            <div className="w-15 bg-slate-900 rounded-sm flex items-center justify-center">
+              {/* <span className="text-white font-medium text-xs leading-none">+</span> */}
+              <img src="/logo.jpeg" alt="Soudamini Logo" className="w-full h-full object-cover" />
             </div>
-            <span className="text-base font-semibold tracking-tight text-slate-900">
+            {/* <span className="text-base font-semibold tracking-tight text-slate-900">
               Soudamini.
-            </span>
+            </span> */}
           </Link>
 
           {/* Clean Desktop Nav */}
