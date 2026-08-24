@@ -295,10 +295,10 @@ export default function Privacy() {
                     verifiable address anywhere on its site reads as a red
                     flag to reviewers. Replace the placeholder below.
                   */}
-                  <p><strong className="text-white">Registered Office:</strong> [Add your registered business address here]</p>
-                  <p><strong className="text-white">Email:</strong> legal@soudaminihealthcare.com</p>
-                  <p><strong className="text-white">Escalations:</strong> dpo@soudaminihealthcare.com</p>
-                  <p><strong className="text-white">Phone:</strong> +91 (800) 123-4567 (Mon-Fri, 9:00 AM - 6:00 PM IST)</p>
+                  <p><strong className="text-white">Registered Office:</strong> [Canal Road, Charampa, Bhadrak,756101]</p>
+                  <p><strong className="text-white">Email:</strong> mishrasuvendukumar60@gmail.com</p>
+                  <p><strong className="text-white">Escalations:</strong> mishrasuvendukumar60@gmail.com</p>
+                  <p><strong className="text-white">Phone:</strong> +91 (889) 598-7691 (Mon-Fri, 6:30 AM - 10:00 PM IST)</p>
                 </div>
                 <div className="mt-10 pt-8 border-t border-slate-700 text-base md:text-lg text-slate-400 italic">
                   All privacy-related inquiries are ticketed and legally mandated to be resolved within 30 days of receipt.
